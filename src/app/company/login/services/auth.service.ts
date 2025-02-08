@@ -8,7 +8,7 @@ import { StorageService } from '../../../services/storage.service';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://127.0.0.1:3000/api/auth/login';
+  private apiUrl = 'https://zerofila-backend-bk6dfkg0s-vinicius-projects-4139bcca.vercel.app/api/auth/login';
 
   constructor(
     private http: HttpClient,

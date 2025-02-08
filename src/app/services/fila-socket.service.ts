@@ -11,7 +11,7 @@ export class FilaSocketService {
   private socket!: Socket;
 
   constructor() {
-    this.socket = io('http://localhost:4000', { autoConnect: false });
+    this.socket = io('https://zerofila-backend-bk6dfkg0s-vinicius-projects-4139bcca.vercel.app/', { autoConnect: false });
     inject(ApplicationRef).isStable.pipe(
       first((isStable) => isStable))
     .subscribe(() => { this.socket.connect() });
