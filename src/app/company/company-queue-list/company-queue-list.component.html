@@ -1,0 +1,29 @@
+<div class="fila-container">
+  <div>
+    <button (click)="adicionarFila()" class="btn-adicionar">
+      <span class="add-fila-text">Adicionar Fila</span>
+      <span class="plus-sign">
+        <img class="mais" style="width: 40px;" src="mais2.png"/>
+      </span>
+    </button>
+  </div>
+  <hr style="border: 0; border-top: 0.5px solid rgb(255, 255, 255); width: 300px;">
+  <div class="fila-card" *ngFor="let fila of filas" (click)="verDetalhes(fila)">
+      <div class="fila-header">
+        <span class="fila-title">{{fila.name}}</span>
+        <span class="fila-status">{{fila.qtdClients}}</span>
+        <div class="fila-action-button">
+          <button style="background-color: transparent;   border: none;" (click)="abrirQrCode(fila)">
+            <img src="qr-code-icon.png" alt="Ação" />
+          </button>
+        </div>
+      </div>
+      <div class="fila-body">
+        <p>{{fila.name}}</p>
+      </div>
+  </div>
+</div>
+<div class="footer-text" style="margin-top: 350px;">
+  <p>zero<strong>fila</strong></p>
+  <p class="powered-by">Powered by H&V</p>
+</div>

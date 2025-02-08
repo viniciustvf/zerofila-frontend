@@ -1,0 +1,65 @@
+.menu {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Alinha os itens ao topo */
+    background: rgb(134, 134, 134); /* Gradiente suave no cabeçalho */
+    color: white;
+    padding: 10px 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .back-icon {
+    font-size: 25px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    color: #ffffff;
+  }
+
+  .back-icon img {
+    width: 8%;
+  }
+  
+  .menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    padding: 8px;
+    color: #000000;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+    margin-top: 5px;
+  }
+  
+  .menu-icon:hover {
+    transform: scale(1.2);
+  }
+  
+  .logo {
+    margin-left: auto;
+  }
+  
+  .logo img {
+    margin-top: 15px;
+    height: 30px;
+    max-height: 30px;
+  }
+
+  router-outlet {
+    margin-top: 60px;
+  }
+  
+  p-toast {
+    z-index: 1050;
+  }
+  

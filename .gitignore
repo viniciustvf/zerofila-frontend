@@ -1,0 +1,44 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-error.log
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Diretórios de Build
+dist/
+tmp/
+out-tsc/
+
+# Configurações do Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs e Relatórios
+logs
+*.log
+*.gz
+*.log.*
+
+# Cache do Angular
+.angular/
+.angular/cache/
+
+# Arquivos de Ambiente (Certifique-se de configurar corretamente no seu projeto)
+.env
+.env.local
+.env.*.local
+
+# Configuração do Cypress (se estiver usando)
+cypress/screenshots/
+cypress/videos/
+
+# Cache do TypeScript
+*.tsbuildinfo
+
+# Arquivos Temporários do Sistema
+.DS_Store
+Thumbs.db
