@@ -42,3 +42,4 @@ cypress/videos/
 # Arquivos Temporários do Sistema
 .DS_Store
 Thumbs.db
+.vercel
