@@ -11,7 +11,7 @@ export class FilaSocketService {
   private socket!: Socket;
 
   constructor() {
-    this.socket = io('http://127.0.0.1:3000/ws', { autoConnect: false });
+    this.socket = io('https://zerofila.timmeapp.com:3001/ws', { autoConnect: false });
     inject(ApplicationRef).isStable.pipe(
       first((isStable) => isStable))
     .subscribe(() => { this.socket.connect() });

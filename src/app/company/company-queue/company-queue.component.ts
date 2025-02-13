@@ -45,7 +45,7 @@ export class CompanyQueueComponent {
 
   estimatedTime: number = 0;
 
-  private readonly URL = 'http://127.0.0.1:3000/';
+  private readonly URL = 'https://zerofila.timmeapp.com:3001/';
 
   filaId: string | null = null;
   

@@ -8,7 +8,7 @@ import { Client } from '../../models/client.interface';
 })
 export class ClientService {
 
-  private apiUrl = 'http://127.0.0.1:3000/api/fila';
+  private apiUrl = 'https://zerofila.timmeapp.com:3001/api/fila';
 
   constructor(private http: HttpClient) {}
 

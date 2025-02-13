@@ -10,8 +10,8 @@ import { StorageService } from '../../services/storage.service';
 })
 export class QueueService {
 
-  private apiUrl = 'http://127.0.0.1:3000/api/fila';
-  private empresaUrl = 'http://127.0.0.1:3000/api/empresa';
+  private apiUrl = 'https://zerofila.timmeapp.com:3001/api/fila';
+  private empresaUrl = 'https://zerofila.timmeapp.com:3001/api/empresa';
 
   constructor(private http: HttpClient, private storageService: StorageService) {}
 

@@ -31,7 +31,7 @@ export class CompanyQueueAddClientComponent {
   
   clientName: string = '';
 
-  private readonly URL = 'http://127.0.0.1:3000/';
+  private readonly URL = 'https://zerofila.timmeapp.com:3001/';
 
   showForm = true;
 
