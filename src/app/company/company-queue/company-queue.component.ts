@@ -45,7 +45,7 @@ export class CompanyQueueComponent {
 
   estimatedTime: number = 0;
 
-  private readonly URL = 'https://zerofila-backend-bk6dfkg0s-vinicius-projects-4139bcca.vercel.app/ws';
+  private readonly URL = 'http://127.0.0.1:3000/';
 
   filaId: string | null = null;
   

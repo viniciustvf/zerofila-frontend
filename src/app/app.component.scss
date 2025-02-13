@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start; /* Alinha os itens ao topo */
-    background: rgb(134, 134, 134); /* Gradiente suave no cabeçalho */
+    background: rgb(255, 255, 255); /* Gradiente suave no cabeçalho */
     color: white;
     padding: 10px 30px;
     position: fixed;
@@ -28,6 +28,7 @@
   }
 
   .back-icon img {
+    margin-top: 8px;
     width: 8%;
   }
   

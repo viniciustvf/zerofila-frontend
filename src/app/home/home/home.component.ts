@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ export class HomeComponent implements OnInit {
 
   public empresaNome: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private messageService: MessageService) { }
 
   ngOnInit(): void {
     const empresaData = sessionStorage.getItem('empresa');
@@ -29,6 +30,14 @@ export class HomeComponent implements OnInit {
 
   abrirFilas(): void {
     this.router.navigate(['/company-queue-list']);
+  }
+
+  abrirRelatorios(): void {
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Ops!',
+      detail: 'Recurso indisponível no momento.',
+    });  
   }
 
   abrirEmpresa(): void {

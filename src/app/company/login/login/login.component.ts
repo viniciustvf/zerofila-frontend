@@ -47,12 +47,15 @@ export class LoginComponent {
     this.authService.login(this.login.email, this.login.password)
       .pipe(
         tap(() => {
-          console.log('LOGOU???!')
           this.router.navigate(['/']);
         }),
         catchError((err) => {
-          console.error('Erro no login:', err);
           this.errorMessage = 'Erro ao fazer login. Verifique suas credenciais!';
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro',
+            detail: this.errorMessage,
+          });
           return throwError(() => err);
         })
       )

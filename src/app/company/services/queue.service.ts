@@ -10,8 +10,8 @@ import { StorageService } from '../../services/storage.service';
 })
 export class QueueService {
 
-  private apiUrl = 'https://zerofila-backend-bk6dfkg0s-vinicius-projects-4139bcca.vercel.app/api/fila';
-  private empresaUrl = 'https://zerofila-backend-bk6dfkg0s-vinicius-projects-4139bcca.vercel.app/api/empresa';
+  private apiUrl = 'http://127.0.0.1:3000/api/fila';
+  private empresaUrl = 'http://127.0.0.1:3000/api/empresa';
 
   constructor(private http: HttpClient, private storageService: StorageService) {}
 
