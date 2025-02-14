@@ -45,7 +45,7 @@ export class CompanyQueueComponent {
 
   estimatedTime: number = 0;
 
-  private readonly URL = 'https://zerofila.timmeapp.com:3001/';
+  private readonly URL = 'https://zerofila-backend.vercel.app/';
 
   filaId: string | null = null;
   
@@ -128,8 +128,17 @@ export class CompanyQueueComponent {
   callNextClient() {
     if (this.filaId) {
       this.filaSocketService.callNextClient(this.filaId);
-    }  
-  }
+  
+      this.queueService.checkQueueAndNotify().subscribe({
+        next: (response) => {
+          console.log('✅ Fila verificada:', response.message);
+        },
+        error: (error) => {
+          console.error('❌ Erro ao verificar fila:', error);
+        }
+      });
+    }
+  }  
 
   addClient() {
     this.router.navigate(['/company-queue-add-client'], {

@@ -10,8 +10,8 @@ import { StorageService } from '../../services/storage.service';
 })
 export class QueueService {
 
-  private apiUrl = 'https://zerofila.timmeapp.com:3001/api/fila';
-  private empresaUrl = 'https://zerofila.timmeapp.com:3001/api/empresa';
+  private apiUrl = 'https://zerofila-backend.vercel.app/api/fila';
+  private empresaUrl = 'https://zerofila-backend.vercel.app/api/empresa';
 
   constructor(private http: HttpClient, private storageService: StorageService) {}
 
@@ -142,6 +142,29 @@ export class QueueService {
     return this.http.get<{ exists: boolean; client?: Client }>(
       `${this.apiUrl}/check-client`,
       { headers: this.getHeaders(), params }
+    );
+  }
+
+  /**
+   * Gera e atualiza o hash das filas no servidor.
+   * @returns Observable com a resposta do backend
+   */
+  generateAndUpdateHash(): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(
+      `${this.apiUrl}/generate-hash`,
+      {}, // Corpo vazio, pois o endpoint não requer dados no body
+      { headers: this.getHeaders() }
+    );
+  }
+
+  /**
+   * Verifica a fila e notifica os clientes.
+   * @returns Observable com a resposta do backend
+   */
+  checkQueueAndNotify(): Observable<{ message: string }> {
+    return this.http.get<{ message: string }>(
+      `${this.apiUrl}/check-queue`,
+      { headers: this.getHeaders() }
     );
   }
 

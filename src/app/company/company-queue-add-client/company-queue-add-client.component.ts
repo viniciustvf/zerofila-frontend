@@ -31,7 +31,7 @@ export class CompanyQueueAddClientComponent {
   
   clientName: string = '';
 
-  private readonly URL = 'https://zerofila.timmeapp.com:3001/';
+  private readonly URL = 'https://zerofila-backend.vercel.app/';
 
   showForm = true;
 

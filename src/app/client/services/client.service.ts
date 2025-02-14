@@ -8,7 +8,7 @@ import { Client } from '../../models/client.interface';
 })
 export class ClientService {
 
-  private apiUrl = 'https://zerofila.timmeapp.com:3001/api/fila';
+  private apiUrl = 'https://zerofila-backend.vercel.app/api/fila';
 
   constructor(private http: HttpClient) {}
 

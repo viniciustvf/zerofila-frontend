@@ -18,6 +18,7 @@ export class CompanyQueueQrcodeComponent implements OnInit {
   url!: string;
   qrCodeSize: number = 800;
   copied: boolean = false;
+  private updateInterval: any;
 
   @ViewChild('qrcodeContainer', { static: false }) qrcodeContainer!: ElementRef;
 
@@ -38,10 +39,7 @@ export class CompanyQueueQrcodeComponent implements OnInit {
         console.error('Queue ID não encontrado.');
       }
     });
-  }
-  
 
-  ngAfterViewInit(): void {
     if (typeof window === 'undefined') {
       console.warn('ngAfterViewInit skipped: Not running in a browser environment.');
       return;
@@ -52,8 +50,6 @@ export class CompanyQueueQrcodeComponent implements OnInit {
       return;
     }
 
-    this.fetchInitialQueueUrl(this.queueId);
-
     this.filaSocketService.listenForQueueUrlUpdate().subscribe((data) => {
       console.log('Evento recebido no frontend:', data);
       if (data.url !== this.url) {
@@ -63,21 +59,42 @@ export class CompanyQueueQrcodeComponent implements OnInit {
       }
     });
 
+    this.fetchInitialQueueUrl(this.queueId);
+
     this.filaSocketService.viewQrCode();
+
+    this.updateInterval = setInterval(() => {
+      console.log('Atualizando fila...');
+      this.fetchInitialQueueUrl(this.queueId!);
+    }, 5000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.updateInterval) {
+      clearInterval(this.updateInterval);
+    }
   }
   
-
   private fetchInitialQueueUrl(queueId: string): void {
-    this.queueService.findById(queueId).subscribe(
-      (queue: { url: string; }) => {
-        this.url = queue.url;
-        this.generateQRCode(this.url);
-        this.cdr.detectChanges();
+    this.queueService.generateAndUpdateHash().subscribe({
+      next: () => {
+        console.log('Hash atualizado com sucesso, buscando a fila...');
+        
+        this.queueService.findById(queueId).subscribe(
+          (queue: { url: string }) => {
+            this.url = queue.url;
+            this.generateQRCode(this.url);
+            this.cdr.detectChanges();
+          },
+          (error: any) => {
+            console.error('Erro ao buscar a fila:', error);
+          }
+        );
       },
-      (error: any) => {
-        console.error('Erro ao buscar a fila:', error);
+      error: (error: any) => {
+        console.error('Erro ao gerar e atualizar hash:', error);
       }
-    );
+    });
   }
 
   private generateQRCode(data: string): void {
