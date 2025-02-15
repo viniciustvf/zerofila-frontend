@@ -8,7 +8,7 @@ import { StorageService } from '../../../services/storage.service';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://5.189.184.133:3000/api/auth/login';
+  private apiUrl = 'https://zerofila.shop/api/auth/login';
 
   constructor(
     private http: HttpClient,
