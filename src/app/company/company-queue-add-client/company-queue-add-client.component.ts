@@ -31,7 +31,7 @@ export class CompanyQueueAddClientComponent {
   
   clientName: string = '';
 
-  private readonly URL = 'http://5.189.184.133:3000/';
+  private readonly URL = 'https://5.189.184.133:3000/';
 
   showForm = true;
 

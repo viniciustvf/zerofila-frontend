@@ -8,7 +8,7 @@ import { Client } from '../../models/client.interface';
 })
 export class ClientService {
 
-  private apiUrl = 'http://5.189.184.133:3000/api/fila';
+  private apiUrl = 'https://5.189.184.133:3000/api/fila';
 
   constructor(private http: HttpClient) {}
 
