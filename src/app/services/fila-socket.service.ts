@@ -11,16 +11,42 @@ export class FilaSocketService {
   private socket!: Socket;
 
   constructor() {
-    this.socket = io('wss://zerofila.shop:3000/ws', { autoConnect: false });
-    inject(ApplicationRef).isStable.pipe(
-      first((isStable) => isStable))
-    .subscribe(() => { this.socket.connect() });
+    // Define a URL do WebSocket
+    const WS_URL = 'wss://zerofila.shop/ws';  // Certifique-se que o caminho está correto
 
-    this.socket.on('connect', () => {
-      console.log('Conectado ao servidor WebSocket'); // Log de conexão
+    this.socket = io(WS_URL, {
+      autoConnect: false,  // Evita conexão automática, será feita manualmente
+      reconnection: true,  // Habilita tentativas de reconexão
+      reconnectionAttempts: 10,  // Número máximo de tentativas de reconexão
+      reconnectionDelay: 5000,  // Tempo de espera entre tentativas (5s)
+      transports: ['websocket'],  // Força o uso de WebSocket e evita polling
     });
+
+    // Espera o Angular estar estável antes de conectar
+    inject(ApplicationRef).isStable.pipe(first(isStable => isStable))
+      .subscribe(() => {
+        console.log('🔌 Tentando conectar ao WebSocket...');
+        this.socket.connect();
+      });
+
+    // Evento de conexão bem-sucedida
+    this.socket.on('connect', () => {
+      console.log('✅ Conectado ao WebSocket!');
+    });
+
+    // Evento de erro na conexão
     this.socket.on('connect_error', (error) => {
-      console.error('Erro na conexão WebSocket:', error); // Log de erro de conexão
+      console.error('❌ Erro na conexão WebSocket:', error);
+    });
+
+    // Evento de desconexão
+    this.socket.on('disconnect', (reason) => {
+      console.warn(`⚠️ WebSocket desconectado: ${reason}`);
+    });
+
+    // Loga qualquer evento recebido para debug
+    this.socket.onAny((event, ...args) => {
+      console.log(`📩 Evento recebido: ${event}`, args);
     });
   }
 
