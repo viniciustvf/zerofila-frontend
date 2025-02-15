@@ -45,7 +45,7 @@ export class CompanyQueueComponent {
 
   estimatedTime: number = 0;
 
-  private readonly URL = 'https://5.189.184.133:3000/';
+  private readonly URL = 'http://5.189.184.133:3000/';
 
   filaId: string | null = null;
   

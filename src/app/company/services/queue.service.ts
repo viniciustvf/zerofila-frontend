@@ -10,8 +10,8 @@ import { StorageService } from '../../services/storage.service';
 })
 export class QueueService {
 
-  private apiUrl = 'https://5.189.184.133:3000/api/fila';
-  private empresaUrl = 'https://5.189.184.133:3000/api/empresa';
+  private apiUrl = 'http://5.189.184.133:3000/api/fila';
+  private empresaUrl = 'http://5.189.184.133:3000/api/empresa';
 
   constructor(private http: HttpClient, private storageService: StorageService) {}
 
