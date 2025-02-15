@@ -11,7 +11,7 @@ export class FilaSocketService {
   private socket!: Socket;
 
   constructor() {
-    this.socket = io('ws://5.189.184.133:3000/ws', { autoConnect: false });
+    this.socket = io('ws://zerofila.shop:3000/ws', { autoConnect: false });
     inject(ApplicationRef).isStable.pipe(
       first((isStable) => isStable))
     .subscribe(() => { this.socket.connect() });
