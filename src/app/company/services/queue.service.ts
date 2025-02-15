@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Fila } from '../../models/fila.interface';
 import { Client } from '../../models/client.interface';
 import { StorageService } from '../../services/storage.service';
@@ -134,11 +134,21 @@ export class QueueService {
   /**
    * Verifica se um cliente já está na fila pelo número de telefone.
    * @param telefone Número de telefone do cliente
-   * @param filaId ID da fila
+   * @param filaId ID da fila (deve ser um número)
    * @returns Observable indicando se o cliente já está na fila e os seus dados, se aplicável
    */
-  checkClientInQueue(telefone: string, filaId: string): Observable<{ exists: boolean; client?: Client }> {
-    const params = new HttpParams().set('telefone', telefone).set('filaId', filaId);
+  checkClientInQueue(telefone: string, filaId: string | number): Observable<{ exists: boolean; client?: Client }> {
+    const parsedFilaId = Number(filaId); // 🛠️ Converte para número
+
+    if (isNaN(parsedFilaId) || parsedFilaId <= 0) {
+      console.error('❌ Erro no frontend: Fila ID inválido!', { telefone, filaId, parsedFilaId });
+      return throwError(() => new Error('Fila ID inválido.'));
+    }
+
+    const params = new HttpParams()
+      .set('telefone', telefone)
+      .set('filaId', parsedFilaId.toString());
+
     return this.http.get<{ exists: boolean; client?: Client }>(
       `${this.apiUrl}/check-client`,
       { headers: this.getHeaders(), params }
