@@ -139,6 +139,7 @@ export class QueueService {
    */
   checkClientInQueue(telefone: string, filaId: string | number): Observable<{ exists: boolean; client?: Client }> {
     const parsedFilaId = Number(filaId); // 🛠️ Converte para número
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     if (isNaN(parsedFilaId) || parsedFilaId <= 0) {
       console.error('❌ Erro no frontend: Fila ID inválido!', { telefone, filaId, parsedFilaId });
@@ -151,7 +152,7 @@ export class QueueService {
 
     return this.http.get<{ exists: boolean; client?: Client }>(
       `${this.apiUrl}/check-client`,
-      { headers: this.getHeaders(), params }
+      { headers: headers, params }
     );
   }
 
