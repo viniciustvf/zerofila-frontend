@@ -1,7 +1,72 @@
-<div class="fila-container">
-    <div style="color: white; margin-top: 150px; font-size: 150px;">CONTEÚDO DO RELATÓRIO AQUI</div>
-</div>
-<div class="footer-text" style="margin-top: 350px;">
-    <p>zero<strong>fila</strong></p>
-    <p class="powered-by">Powered by H&V</p>
-</div>
+<div class="container">
+    <h2>Relatório de Filas</h2>
+  
+    <div class="date-picker-group">
+      <div class="form-group">
+        <label for="startDate">Data Início:</label>
+        <p-calendar 
+          id="startDate" 
+          [(ngModel)]="startDate" 
+          [showIcon]="true" 
+          dateFormat="dd/mm/yy">
+        </p-calendar>
+      </div>
+  
+      <div class="form-group">
+        <label for="endDate">Data Final:</label>
+        <p-calendar 
+          id="endDate" 
+          [(ngModel)]="endDate" 
+          [showIcon]="true" 
+          dateFormat="dd/mm/yy">
+        </p-calendar>
+      </div>
+    </div>
+  
+    <div class="button-container">
+      <button (click)="obterRelatorio()">Gerar Relatório</button>
+    </div>
+  
+    <div *ngIf="relatorioGerado">
+      <div class="cards">
+        <div class="card">
+          <h3>Tempo Médio de Espera</h3>
+          <p>{{ tempoMedioEspera }}</p>
+        </div>
+        <div class="card">
+          <h3>Total Clientes Atendidos</h3>
+          <p>{{ totalClientesAtendidos }}</p>
+        </div>
+        <div class="card">
+          <h3>Clientes na Fila</h3>
+          <p>{{ clientesNaFila }}</p>
+        </div>
+      </div>
+  
+      <div class="table-container">
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Serviço</th>
+              <th>Data</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of dadosRelatorio">
+              <td>{{ item.cliente }}</td>
+              <td>{{ item.servico }}</td>
+              <td>{{ item.data | date:'dd/MM/yyyy' }}</td>
+              <td>{{ item.status }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <div *ngIf="dadosRelatorio.length === 0 && relatorioGerado">
+      <p>Nenhum dado encontrado para o período selecionado.</p>
+    </div>
+  </div>
+  

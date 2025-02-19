@@ -1,6 +1,113 @@
-.fila-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsivo */
-    gap: 20px;
-    padding: 40px;
-}
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+    
+    @media (max-width: 768px) {
+      padding: 15px;
+    }
+  }
+  
+  .date-picker-group {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .date-picker {
+      flex: 1;
+      min-width: 150px;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      padding: 10px;
+      transition: border-color 0.3s;
+      
+      &:focus {
+        border-color: #80bdff;
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      }
+    }
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+  
+    button {
+      background: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+  
+      &:hover {
+        background: #0056b3;
+      }
+    }
+  }
+  
+  .cards {
+    display: flex;
+    gap: 15px;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    flex: 1;
+    min-width: 120px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+  
+  .table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+  
+    .report-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      
+      th, td {
+        padding: 12px;
+        border: 1px solid #dee2e6;
+        text-align: left;
+      }
+  
+      th {
+        background: #f1f1f1;
+        font-weight: bold;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .report-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+    }
+  }
+  

@@ -16,6 +16,21 @@ export class QueueService {
   constructor(private http: HttpClient, private storageService: StorageService) {}
 
   /**
+ * Obtém a lista de clientes de uma empresa dentro de um intervalo de datas.
+ * @param empresaId ID da empresa
+ * @param startDate Data de início no formato YYYY-MM-DD
+ * @param endDate Data de fim no formato YYYY-MM-DD
+ * @returns Observable com a lista de clientes
+ */
+getCompanyClients(empresaId: number, startDate: string, endDate: string): Observable<Client[]> {
+  return this.http.get<Client[]>(
+    `https://zerofila.shop/api/client/empresa/${empresaId}/clientes/${startDate}/${endDate}`,
+    { headers: this.getHeaders() }
+  );
+}
+
+
+  /**
    * Obtém os headers com o token JWT
    */
   private getHeaders(): HttpHeaders {
