@@ -33,11 +33,12 @@ export class HomeComponent implements OnInit {
   }
 
   abrirRelatorios(): void {
-    this.messageService.add({
+    this.router.navigate(['/company-queue-reports']);
+    /*this.messageService.add({
       severity: 'info',
       summary: 'Ops!',
       detail: 'Recurso indisponível no momento.',
-    });  
+    });*/
   }
 
   abrirEmpresa(): void {
