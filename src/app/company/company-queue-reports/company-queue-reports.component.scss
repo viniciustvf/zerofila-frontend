@@ -1,11 +1,24 @@
-.container {
+/* Estilização para a página de relatórios */
+
+body {
+    background: #121212;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+
+  .titulo{
+    color: white;
+  }
+  
+  .container {
     max-width: 900px;
     margin: auto;
     padding: 20px;
-    background: #ffffff;
+    background: #1e1e1e;
     border-radius: 12px;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
-    
+    box-shadow: 0px 6px 15px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease-in-out;
+  
     @media (max-width: 768px) {
       padding: 15px;
     }
@@ -14,70 +27,109 @@
   .date-picker-group {
     display: flex;
     gap: 15px;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
-    
-    @media (max-width: 768px) {
-      flex-direction: column;
-      gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .form-group {
+    flex: 1;
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    color: white; /* Torna o texto do rótulo branco */
+    margin-bottom: 5px;
+  }
+  
+  .date-picker {
+    padding: 12px;
+    border: 2px solid #ced4da;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #2a2a2a;
+    color: white; /* Torna o texto do datepicker branco */
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 3px 6px rgba(255, 255, 255, 0.05);
+    text-align: center;
+  
+    &:hover {
+      border-color: #007bff;
     }
-    
-    .date-picker {
-      flex: 1;
-      min-width: 150px;
-      border: 1px solid #ced4da;
-      border-radius: 8px;
-      padding: 10px;
-      transition: border-color 0.3s;
-      
-      &:focus {
-        border-color: #80bdff;
-        outline: none;
-        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-      }
+  
+    &:focus {
+      border-color: #0056b3;
+      outline: none;
+      box-shadow: 0 0 0 0.2rem rgba(0, 91, 187, 0.25);
     }
   }
   
   .button-container {
     display: flex;
     justify-content: center;
-    margin: 15px 0;
+    margin: 20px 0;
   
     button {
-      background: #007bff;
+      background: linear-gradient(135deg, #007bff, #0056b3);
       color: white;
-      padding: 10px 15px;
+      padding: 12px 18px;
       border: none;
       border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: all 0.3s;
+      box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
   
       &:hover {
-        background: #0056b3;
+        background: linear-gradient(135deg, #0056b3, #003d82);
+        transform: scale(1.05);
+      }
+  
+      &:active {
+        transform: scale(0.98);
       }
     }
   }
   
   .cards {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     justify-content: space-around;
     margin-bottom: 20px;
     flex-wrap: wrap;
   }
   
   .card {
-    background: #f8f9fa;
+    background: #252525;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 12px;
     text-align: center;
     flex: 1;
-    min-width: 120px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    min-width: 140px;
+    max-width: 220px;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s;
+    position: relative;
+  
+    h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: white;
+    }
+  
+    p {
+      font-size: 24px;
+      font-weight: bold;
+      color: #007bff;
+    }
   
     &:hover {
       transform: translateY(-5px);
+      box-shadow: 0px 6px 15px rgba(255, 255, 255, 0.15);
     }
   }
   
@@ -89,19 +141,32 @@
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
-      
-      th, td {
-        padding: 12px;
-        border: 1px solid #dee2e6;
+      background: #1e1e1e;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+  
+      th,
+      td {
+        padding: 14px;
+        border: 1px solid #444;
         text-align: left;
+        font-size: 16px;
+        color: white;
       }
   
       th {
-        background: #f1f1f1;
+        background: #007bff;
+        color: white;
         font-weight: bold;
+        text-transform: uppercase;
+      }
+  
+      tr:nth-child(even) {
+        background: #2a2a2a;
       }
     }
-    
+  
     @media (max-width: 768px) {
       .report-table {
         display: block;

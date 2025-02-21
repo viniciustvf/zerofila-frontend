@@ -22,9 +22,12 @@ export class CompanyQueueReportsComponent implements OnInit {
   startDate: Date = new Date();
   endDate: Date = new Date();
   relatorioGerado = false;
-  tempoMedioEspera = '0 min';
+  tempoMedioEspera = '0h';
   totalClientesAtendidos = 0;
   clientesNaFila = 0;
+  clientesDesistiram = 0;
+  percentualDesistencia = '0%';
+  percentualDesistentes = '0%'; // Nova variável para armazenar a porcentagem de desistentes
 
   constructor(private queueService: QueueService) {}
 
@@ -72,6 +75,7 @@ export class CompanyQueueReportsComponent implements OnInit {
     const temposEspera: number[] = [];
     let atendidos = 0;
     let naFila = 0;
+    let desistiram = 0;
 
     this.dadosRelatorio.forEach(cliente => {
       if (cliente.exitTime) {
@@ -80,15 +84,21 @@ export class CompanyQueueReportsComponent implements OnInit {
           temposEspera.push(tempoEspera);
         }
         atendidos++;
+      } else if (cliente.filaId === null && cliente.exitTime === null) {
+        desistiram++;
       } else {
         naFila++;
       }
     });
 
     const mediaMs = temposEspera.length > 0 ? temposEspera.reduce((a, b) => a + b, 0) / temposEspera.length : 0;
-    this.tempoMedioEspera = mediaMs > 0 ? `${Math.round(mediaMs / 60000)} min` : '0 min';
+    const mediaHoras = mediaMs > 0 ? (mediaMs / 3600000).toFixed(2) : '0';
+    this.tempoMedioEspera = `${mediaHoras}h`;
     this.totalClientesAtendidos = atendidos;
     this.clientesNaFila = naFila;
+    this.clientesDesistiram = desistiram;
+    this.percentualDesistencia = atendidos > 0 ? `${((desistiram / atendidos) * 100).toFixed(2)}%` : '0%';
+    this.percentualDesistentes = atendidos > 0 ? `${((desistiram / (atendidos + desistiram)) * 100).toFixed(2)}%` : '0%'; // Cálculo da porcentagem de desistentes
   }
 
   formatarData(data: Date): string {

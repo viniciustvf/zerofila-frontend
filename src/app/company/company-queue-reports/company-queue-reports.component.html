@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Relatório de Filas</h2>
+    <h2 class="titulo">Relatório de Filas</h2>
   
     <div class="date-picker-group">
       <div class="form-group">
@@ -8,7 +8,8 @@
           id="startDate" 
           [(ngModel)]="startDate" 
           [showIcon]="true" 
-          dateFormat="dd/mm/yy">
+          dateFormat="dd/mm/yy"
+          class="date-picker">
         </p-calendar>
       </div>
   
@@ -18,10 +19,11 @@
           id="endDate" 
           [(ngModel)]="endDate" 
           [showIcon]="true" 
-          dateFormat="dd/mm/yy">
+          dateFormat="dd/mm/yy"
+          class="date-picker">
         </p-calendar>
       </div>
-    </div>
+    </div>  
   
     <div class="button-container">
       <button (click)="obterRelatorio()">Gerar Relatório</button>
@@ -41,27 +43,10 @@
           <h3>Clientes na Fila</h3>
           <p>{{ clientesNaFila }}</p>
         </div>
-      </div>
-  
-      <div class="table-container">
-        <table class="report-table">
-          <thead>
-            <tr>
-              <th>Cliente</th>
-              <th>Serviço</th>
-              <th>Data</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of dadosRelatorio">
-              <td>{{ item.cliente }}</td>
-              <td>{{ item.servico }}</td>
-              <td>{{ item.data | date:'dd/MM/yyyy' }}</td>
-              <td>{{ item.status }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="card">
+          <h3>Clientes que Desistiram</h3>
+          <p>{{ clientesDesistiram }} ({{ percentualDesistentes }})</p>
+        </div>
       </div>
     </div>
   
