@@ -12,3 +12,23 @@
   .submit-button:hover {
     background-color: rgb(129, 167, 192);
   }
+
+  #qrcode-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+  
+    canvas {
+      max-width: 90%; // Evita que o QR Code ultrapasse a largura da tela
+      height: auto;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    #qrcode-container {
+      margin-top: 10px;
+    }
+  }
+  

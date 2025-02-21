@@ -30,6 +30,9 @@ export class CompanyQueueQrcodeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.qrCodeSize = window.innerWidth < 600 ? 300 : 800;
+    window.addEventListener('resize', this.updateQrCodeSize.bind(this));
+
     this.route.queryParamMap.subscribe((params) => {
       this.queueId = params.get('id');
   
@@ -75,6 +78,13 @@ export class CompanyQueueQrcodeComponent implements OnInit {
     }
   }
   
+  updateQrCodeSize(): void {
+    this.qrCodeSize = window.innerWidth < 600 ? 300 : 800;
+    if (this.url) {
+      this.generateQRCode(this.url);
+    }
+  }
+
   private fetchInitialQueueUrl(queueId: string): void {
     this.queueService.generateAndUpdateHash().subscribe({
       next: () => {

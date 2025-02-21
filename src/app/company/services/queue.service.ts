@@ -195,7 +195,7 @@ getCompanyClients(empresaId: number, startDate: string, endDate: string): Observ
   }
 
   /**
-   * Obtém o tempo estimado de atendimento da fila.
+   * Obtém o tempo estimado por atendimento da fila.
    * @param queueId ID da fila
    * @returns Observable com o tempo estimado de espera
    */
